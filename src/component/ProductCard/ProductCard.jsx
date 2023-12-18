@@ -12,8 +12,8 @@ const ProductCard = ({ data }) => {
   const [cartItem, setCartItem] = useRecoilState(CartAtom);
 
   // 이미 장바구니에 들어있는지 확인
-  const isAlreadyInCart = cartItem.filter((e) => e.id === id).length;
-
+  // const isAlreadyInCart = cartItem.filter((e) => e.id === id).length;
+  const isAlreadyInCart = cartItem.findIndex((e) => e.id === id) !== -1;
   /**
    * 장바구니에 있는지 확인후, 없을때만 아톰에 추가
    */
@@ -25,14 +25,17 @@ const ProductCard = ({ data }) => {
 
   return (
     <Wrapper>
-      <img width={276} height={276} src={dummyImage} alt={`${id}의 더미이미지`} />
+      <img
+        width={276}
+        height={276}
+        src={dummyImage}
+        alt={`${id}의 더미이미지`}
+      />
       <Price>{price.toLocaleString()}원</Price>
       <Haeding>{title}</Haeding>
       <MaxLine1>{description}</MaxLine1>
       <Button onClick={AddToCart} disabled={isAlreadyInCart}>
-        {isAlreadyInCart
-          ? `장바구니에 추가됬습니다`
-          : "장바구니에 추가"}
+        {isAlreadyInCart ? `장바구니에 추가됐습니다` : "장바구니에 추가"}
       </Button>
     </Wrapper>
   );
