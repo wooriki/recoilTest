@@ -8,8 +8,13 @@ import styled from "styled-components";
 import CartItem from "./../component/CartItem/CartItem";
 
 function Cart() {
+  // 전역상태관리소의 값을 불러오기
   const cartItem = useRecoilValue(CartAtom);
+
+  // 파생데이터인 셀렉터를 이용하기
   const TotalQuantity = useRecoilValue(QuantitySelector);
+
+  // 파생데이터인 셀렉터를 이용하기
   const TotalPrice = useRecoilValue(TotalPriceSelector);
   return (
     <>
